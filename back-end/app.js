@@ -1,14 +1,48 @@
-const http = require('http');
+const express=require("express");
+const app=express();
+const mongoose=require("mongoose");
+const bodyParser=require("body-parser");
+const jwt = require("jsonwebtoken");
+const cors=require("cors");
+const userRoutes=require("./routes/user");
+const orderRoutes=require("./routes/order")
+mongoose.connect("mongodb+srv://vivek:vivek@laundry-service.dwaok.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
 
-// Create an instance of the http server to handle HTTP requests
-let app = http.createServer((req, res) => {
-    // Set a response type of plain text for the response
-    res.writeHead(200, {'Content-Type': 'text/plain'});
+app.use(cors());
+app.get("/students",(req,res)=>{
+    res.json("ok");
+})
 
-    // Send back a response and end the connection
-    res.end('Hello World!\n');
-});
+// app.use('/orders',function(req,res,next){
+//     try{
+//         const token = req.headers.authorization?.split(" ")[1];
+//         if (!token){
+//             return res.status(401).json({
+//                 status:"failed",
+//                 message:"Not Authenticated"
+//             })
+//         }
+//         const decoded=jwt.verify(token,'Laundry-Secret-123');
+//         if(!decoded){
+//             return res.status(401).json({
+//                 status:"failed",
+//                 message:"Invalid token"
+//             })
+//         }
+//         console.log(decoded)
+//         req.user = decoded.data;
+//     }catch(e){
+//         res.json({
+//             status:'failed',
+//             message:e.message
+//         })
+//     }
+//     next();
+// });
 
-// Start the server on port 3000
-app.listen(4000, '127.0.0.1');
-console.log('Node server running on port 4000');
+
+app.use(bodyParser());
+
+app.use("/",userRoutes);
+app.use("/orders",orderRoutes);
+app.listen('3070',console.log('Server listening to port 3070'));
