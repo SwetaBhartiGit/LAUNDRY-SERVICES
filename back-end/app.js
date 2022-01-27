@@ -6,8 +6,13 @@ const jwt = require("jsonwebtoken");
 const cors=require("cors");
 const userRoutes=require("./routes/user");
 const orderRoutes=require("./routes/order")
-mongoose.connect("mongodb+srv://vivek:vivek@laundry-service.dwaok.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
-
+mongoose.connect("mongodb+srv://vivek:vivek@team-6.wxshg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+mongoose.connection.on("connected", () => {
+    console.log("connected to mongo ");
+  });
+  mongoose.connection.on("error", (err) => {
+    console.log("error connecting", err);
+  });
 app.use(cors());
 app.get("/students",(req,res)=>{
     res.json("ok");

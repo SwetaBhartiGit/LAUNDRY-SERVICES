@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getToken } from "../utils/authOperations";
 import "./index.css";
-import {Link} from 'react-router-dom';
+import {Link} from "react-router-dom";
 import React from 'react';
 import icon from '../../assets/viewicon.png';
 import warning from '../../assets/warning.jpg';

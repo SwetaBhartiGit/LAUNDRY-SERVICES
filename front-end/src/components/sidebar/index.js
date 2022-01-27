@@ -1,7 +1,7 @@
 import home from "../../assets/home-run (1).svg"
 import addon from "../../assets/more (1).svg" 
 import list from "../../assets/list.svg"
-import {Link} from 'react-router-dom';
+import {Link} from "react-router-dom";
 function Sidebar1(){
     return(<div className="vertical-bar" >
             <div class="w3-sidebar w3-light-grey w3-bar-block" Style=" height:100vh; background-color:#5861AE; display: flex;
